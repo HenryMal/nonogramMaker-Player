@@ -1,0 +1,39 @@
+GridPane {
+  -fx-background-color: gray;
+  -fx-padding: 1 0 1 0;
+}
+
+.toggle-button {
+  /* Background colors are paired: outline color, fill color */
+  -fx-background-color: gray, white;
+  -fx-background-insets: 0, 1;
+  -fx-background-radius: 0;
+  -fx-border-width: 0;
+}
+
+.toggle-button:hover {
+  -fx-background-color: darkcyan, white;
+  -fx-background-insets: 0, 2;
+}
+
+.toggle-button:focused { /* :active and :focus are not supported */
+	                     /* :pressed and :focused are similar though */
+  /*-fx-background-color: darkcyan, white;
+  -fx-background-insets: 0, 2;*/
+}
+
+
+.toggle-button:selected {
+  -fx-background-color: gray, black;
+  -fx-background-insets: 0, 1;
+}
+
+.toggle-button:selected:hover {
+  -fx-background-color: darkcyan, black;
+  -fx-background-insets: 0, 2;
+}
+
+.menu-bar {
+  -fx-padding: 0;
+  -fx-spacing: 1;
+};

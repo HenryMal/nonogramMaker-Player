@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <help_text>fontsize=14
+fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
+// there is no gradebook.toString() in this project</help_text>
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>399</x>
+      <y>203</y>
+      <w>287</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>*edu.ou.cs2334.project5.handlers::OpenHandler*
+bg=white
+transparency=0
+--
+-opener: Openable
+--
++OpenHandler(window: Window,
+             fileChooser: FileChooser,
+             opener: Openable)
++handle(event: ActionEvent): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>378</x>
+      <y>119</y>
+      <w>329</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>*/edu.ou.cs2334.project5.handlers::AbstractBaseHandler/*
+bg=white
+transparency=0
+--
+#window: Window
+#fileChooser: FileChooser
+--
+#AbstractBaseHandler(window: Window,
+                     fileChooser: FileChooser)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>714</x>
+      <y>210</y>
+      <w>168</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+bg=white
+transparency=0
+*EventHandler*
+template=T: Event
+--
++handle(event: T): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>532</x>
+      <y>175</y>
+      <w>21</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>bg=white
+transparency=0
+lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>679</x>
+      <y>231</y>
+      <w>49</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>399</x>
+      <y>294</y>
+      <w>287</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+*edu.ou.cs2334.project5.interfaces::Openable*
+bg=white
+transparency=0
+--
+~open(file: File): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>532</x>
+      <y>266</y>
+      <w>21</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>175</x>
+      <y>581</y>
+      <w>322</w>
+      <h>357</h>
+    </coordinates>
+    <panel_attributes>*edu.ou.cs2334.project5.models::NonogramModel*
+bg=white
+transparency=0
+--
+_-DELIMITER = " ": String_
+_-IDX_NUM_ROWS = 0: int_
+_-IDX_NUM_COLS = 1: int_
+-rowClues: int[][]
+-colClues: int[][]
+-cellStates: CellState[][]
+--
++NonogramModel(int[][] rowClues,
+               int[][] colClues): ctor
++NonogramModel(File file): ctor
++NonogramModel(String filename): ctor
+-initCellStates(int numRows, 
+                int numCols): CellState[][]
+-deepCopy(int[][] array): int[][]
+-readClueLines(BufferedReader reader, 
+               int numLines): int[][]
++getNumRows(): int
++getNumCols(): int
++getRowClues(): int[][]
++getColClues(): int[][]
++getRowClue(int rowIndex): int[]
++getColClue(int colIndex): int[]
++getCellState(int rowIndex,
+              int colIndex): CellState
++getCellStateAsBoolean(int rowIndex,
+                       int colIndex): boolean
++project(boolean[] cells): List&lt;Integer&gt;
++projectCellStatesRow(int row): int[]
++projectCellStatesCol(int col): int[]
++isRowSolved(int row): boolean
++isColSolved(int col): boolean
++isSolved(): boolean
++setCellState(int rowIndex,
+              int colIndex,
+              CellState state): boolean
++resetCells(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>175</x>
+      <y>959</y>
+      <w>322</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+*edu.ou.cs2334.project5.models::CellState*
+bg=white
+transparency=0
+--
+EMPTY
+FILLED
+MARKED
+--
+_+toBoolean(state: CellState)_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>378</x>
+      <y>357</y>
+      <w>329</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>*edu.ou.cs2334.project5.presenters::NonogramPresenter*
+bg=white
+transparency=0
+--
+-view: NonogramView
+-model: NonogramModel
+-cellLength: int
+_-DEFAULT_PUZZLE = "puzzles/space-invader.txt": String_
+--
++NonogramPresenter(int cellLength): ctor
+-initializePresenter(): void
++initializeView(): void
++bindCellViews(): void
++handleLeftClick(int rowIndex, int colIndex): void
++handleRightClick(int rowIndex, int colIndex): void
++updateCellState(int rowIndex, int colIndex, CellState state): void
++processVictory(): void
++removeCellViewMarks(): void
++synchronize(): void
++configureButtons(): void
++resetPuzzle(): void
++getPane(): Pane
+-getWindow(): Window
++open(File file): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>532</x>
+      <y>329</y>
+      <w>21</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>bg=white
+transparency=0
+lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>588</x>
+      <y>581</y>
+      <w>322</w>
+      <h>259</h>
+    </coordinates>
+    <panel_attributes>*edu.ou.cs2334.project5.views::NonogramView*
+bg=white
+transparency=0
+--
+_-STYLE_CLASS = "nonogram-view": String_
+_-SOLVED_STYLE_CLASS = "nonogram-view-solved": String_
+-leftCluesView: LeftCluesView
+-topCluesView: TopCluesView
+-cellGridView: CellGridView
+-bottomHBox: HBox
+-loadBtn: Button
+-resetBtn: Button
+--
++NonogramView(): ctor
++initialize(int[][] rowClues,
+            int[][] colClues,
+            int cellLength): void
++findMaxLength(int[][] array): int
++initButtonHBox(): void
++getCellView(int rowIndex, int colIndex): CellView
++setCellState(int rowIndex,
+              int colIndex, 
+              CellState state): void
++setRowClueState(int rowIndex, boolean solved): void
++setColClueState(int colIndex, boolean solved): void
++getLoadButton(): Button
++getResetButton(): Button
++showVictorAlert(): void
++setPuzzleState(boolean solved): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>588</x>
+      <y>882</y>
+      <w>322</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>*edu.ou.cs2334.project5.views::CellGridView*
+bg=white
+transparency=0
+--
+_-STYLE_CLASS = "cell-grid-view": String_
+-cellViews: CellView[][]
+--
++CellGridView(int numRows,
+              int numCols, 
+              int cellLength)
++initCells(int numRows,
+           int numCols, 
+           int cellLength): void
++getCellView(int rowIdx,
+             int colIdx): CellView
++setCellState(int rowIdx,
+              int colIdx, 
+              CellState state): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>994</x>
+      <y>903</y>
+      <w>322</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>*edu.ou.cs2334.project5.views::CellView*
+bg=white
+transparency=0
+--
+_-STYLE_CLASS = "cell-view": String_
+_-EMPTY_STYLE_CLASS = "cell-view-empty": String_
+_-FILLED_STYLE_CLASS = "cell-view-filled": String_
+_-MARKED_STYLE_CLASS = "cell-view-marked": String_
+_-X_LENGTH_SCALE = 1.0 / 2.0: double_
+-background = new Rectangle(): Rectangle
+-xLeftLeg = new Line(): Line
+-xRightLeg = new Line(): Line
+--
++CellView(int sideLength): ctor
++setState(CellState state): void
++setSize(int sideLength): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>763</x>
+      <y>294</y>
+      <w>210</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>**edu.ou.cs2334.project5::Main**
+bg=white
+transparency=0
+--
+_-IDX_CELL_SIZE = 0: int_
+_-DEFAULT_CELL_SIZE = 30: int_
+--
+_+main(args: String[]): void_
++start(primaryStage: Stage): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>329</x>
+      <y>931</y>
+      <w>21</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>329</x>
+      <y>399</y>
+      <w>63</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;260.0;10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>399</y>
+      <w>63</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>70.0;260.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>742</x>
+      <y>833</y>
+      <w>21</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>903</x>
+      <y>994</y>
+      <w>105</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>994</x>
+      <y>637</y>
+      <w>357</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>*/edu.ou.cs2334.project5.views.clues::AbstractGroupCluesView/*
+bg=white
+transparency=0
+--
+-clueViews: List&lt;AbstractOrientedClueView&gt;
+--
+#AbstractGroupCluesView(Orientation orientation,
+                        String styleClass,
+                        int[][] setOfClues,
+                        int cellLength,
+                        int numClueUnits): ctor
+#makeClue(int[] clue,
+          int cellLength,
+          int numClueUnits): AbstractOrientedClueView
++setState(int idx, boolean solved): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>903</x>
+      <y>798</y>
+      <w>105</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>903</x>
+      <y>581</y>
+      <w>105</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1148</x>
+      <y>588</y>
+      <w>21</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1148</x>
+      <y>749</y>
+      <w>21</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>994</x>
+      <y>504</y>
+      <w>322</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>*edu.ou.cs2334.project5.views.clues::LeftCluesView*
+bg=white
+transparency=0
+--
+_-STYLE_CLASS = "left-clues-view": String_
+--
++LeftCluesView(int[][] rowClues, 
+               int cellLength,
+               int width)
+#makeClue(int[] clue, 
+          int cellLength,
+          int numClueUnits): AbstractOrientedClueView
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>994</x>
+      <y>798</y>
+      <w>322</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>*edu.ou.cs2334.project5.views.clues::TopCluesView*
+bg=white
+transparency=0
+--
+_-STYLE_CLASS = "top-clues-view": String_
+--
++TopCluesView(int[][] colClues, 
+              int cellLength, 
+              int height)
+#makeClue(int[] clue, 
+          int cellLength, 
+          int numClueUnits): AbstractOrientedClueView
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>833</x>
+      <y>406</y>
+      <w>77</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*BorderPane*
+bg=white
+transparency=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>861</x>
+      <y>413</y>
+      <w>21</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>847</y>
+      <w>77</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*GridPane*
+bg=white
+transparency=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1344</x>
+      <y>609</y>
+      <w>77</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*FlowPane*
+bg=white
+transparency=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1414</x>
+      <y>637</y>
+      <w>378</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>*/edu.ou.cs2334.project5.views.clues::AbstractOrientedClueView/*
+bg=white
+transparency=0
+--
+-clueViews = new LinkedList(): List&lt;ClueItemView&gt;
+--
+#AbstractOrientedClueView(Orientation orientation,
+                          String styleClass,
+                          int[] clues,
+                          int cellLength,
+                          int numClueUnits): ctor
++setState(boolean solved): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1344</x>
+      <y>644</y>
+      <w>84</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1309</x>
+      <y>833</y>
+      <w>112</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1309</x>
+      <y>546</y>
+      <w>112</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1407</x>
+      <y>539</y>
+      <w>322</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>*edu.ou.cs2334.project5.views.clues::HorizontalClueView*
+bg=white
+transparency=0
+--
+_-STYLE_CLASS = "horizontal-clue-view": String_
+--
++HorizontalClueView(int[] rowClue,
+                    int cellLength,
+                    int width): ctor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1407</x>
+      <y>826</y>
+      <w>322</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>*edu.ou.cs2334.project5.views.clues::VerticalClueView*
+bg=white
+transparency=0
+--
+_-STYLE_CLASS = "vertical-clue-view": String_
+--
++VerticalClueView(int[] colClue, 
+                  int cellLength,
+                  int height): ctor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1330</x>
+      <y>616</y>
+      <w>42</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1400</x>
+      <y>616</y>
+      <w>42</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>826</x>
+      <y>266</y>
+      <w>84</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*Application*
+bg=white
+transparency=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>350</y>
+      <w>182</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>bg=white
+transparency=0
+lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;50.0;240.0;50.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>861</x>
+      <y>273</y>
+      <w>21</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1771</x>
+      <y>518</y>
+      <w>21</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1428</x>
+      <y>392</y>
+      <w>364</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>*edu.ou.cs2334.project5.views.clues::ClueItemView*
+bg=white
+transparency=0
+--
+_-STYLE_CLASS = "clue-item-view": String_
+_-UNSOLVED_STYLE_CLASS = "clue-item-view-unsolved": String_
+-SOLVED_STYLE_CLASS = "clue-item-view-solved": String_
+-FONT_SIZE_SCALE = 1.0 / 2.0: double
+-background = new Rectangle(): Rectangle
+-text = new Text(): Text
+--
++ClueItemView(int sideLength): ctor
++ClueItemView(int clue, int sideLength): ctor
+-ClueItemView(String clue, int sideLength): ctor
++setState(boolean solved): void
++setSize(int sideLength): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1372</x>
+      <y>994</y>
+      <w>77</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*StackPane*
+bg=white
+transparency=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1309</x>
+      <y>994</y>
+      <w>77</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>574</x>
+      <y>847</y>
+      <w>63</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0;70.0;50.0</additional_attributes>
+  </element>
+</diagram>

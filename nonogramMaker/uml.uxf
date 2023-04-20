@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <help_text>fontsize=14
+fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced</help_text>
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>704</y>
+      <w>352</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>**edu.ou.cs2334.project4.models::NonogramMakerModel**
+bg=white
+transparency=0
+--
+_-EMPTY_CELL_CHAR = '0': char_
+_-FILLED_CELL_CHAR = '1': char_
+-numRows: int
+-numCols: int
+-grid: boolean[]
+--
++NonogramMakerModel(numRows: int, 
+                    numCols: int)
++NonogramMakerModel(file: File)
++NonogramMakerModel(filename: String)
++getGrid(): boolean[]
++getCell(rowIdx: int, 
+         colIdx: int): boolean
++setCell(rowIdx: int,
+         colIdx: int, 
+         state: boolean): void
++getNumRows(): int
++getNumCols(): int
+_+project(cells: boolean[]): List&lt;Integer&gt;_
++projectRow(rowIdx: int): List&lt;Integer&gt;
++projectCol(colIdx: int): List&lt;Integer&gt;
++saveToFile(filename: String): void
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>520</x>
+      <y>704</y>
+      <w>352</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>**edu.ou.cs2334.project4.views::NonogramMakerView**
+bg=white
+transparency=0
+--
+-borderPane: BorderPane
+-menuBar: MenuBar
+-cellGridView: CellGridView
+-menuItemsMap: HashMap&lt;String, MenuItem&gt;
++MENU_ITEM_OPEN = "MENU_ITEM_OPEN": String
++MENU_ITEM_SAVE = "MENU_ITEM_SAVE": String
++MENU_ITEM_EXIT = "MENU_ITEM_EXIT": String
+--
++NonogramMakerView(numRows: int, 
+                   numCols: int,
+                   cellLength: int)
+-initMenuBar(): void
++getMenuItem(name: String): MenuItem
++getPane(): Pane
++initButtons(numRows: int, 
+             numCols: int,
+             cellLength: int): void
++getToggleButton(row: int, col: int): ToggleButton
++getNumRows(): int
++getNumCols(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>248</x>
+      <y>504</y>
+      <w>416</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>**edu.ou.cs2334.project4.presenters::NonogramMakerPresenter**
+bg=white
+transparency=0
+--
+-view: NonogramMakerView
+-model: NonogramMakerModel
+-cellLength: int
+--
++NonogramMakerPresenter(numRows: int, 
+                        numCols: int,
+                        cellLength: int)
+-getWindow(): Window
+-init(): void
+-initToggleButtons(): void
+-bindToggleButtons(): void
+-configureMenuItems(): void
++getPane(): Pane
++open(file: File): void
++save(filename: String): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>520</x>
+      <y>960</y>
+      <w>352</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>**edu.ou.cs2334.project4.views::CellGridView**
+bg=white
+transparency=0
+--
+-gridButtons: ArrayList&lt;ToggleButton&gt;
+-gridPane: GridPane
+-numRows: int
+-numCols: int
+--
++CellGridView(numRows: int, 
+              numCols: int,
+              cellLength: int)
++initButtons(numRows: int, 
+             numCols: int,
+             cellLength: int): void
++getNumRows(): int
++getNumCols(): int
++getToggleButton(row: int, 
+                 col: int): ToggleButton
++getPane(): Pane</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>520</x>
+      <y>224</y>
+      <w>352</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>**edu.ou.cs2334.project4.handlers::SaveHandler**
+bg=white
+transparency=0
+--
+-saver: Saveable
+--
++SaveHandler(window: Window,
+             fileChooser: FileChooser, 
+             saver: Saveable)
++handle(event: ActionEvent): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>88</x>
+      <y>992</y>
+      <w>400</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>**edu.ou.cs2334.project4.handlers::ToggleButtonEventHandler**
+bg=white
+transparency=0
+--
+-model: NonogramMakerModel
+-rowIdx: int
+-colIdx: int
+--
++ToggleButtonEventHandler(model: NonogramMakerModel,
+                          rowIdx: int,
+                          colIdx: int)
++handle(event: ActionEvent): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>336</x>
+      <y>400</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>**edu.ou.cs2334.project4::Main**
+bg=white
+transparency=0
+--
+_-IDX_NUM_COLS = 0: int_
+_-IDX_NUM_ROWS = 1: int_
+_-IDX_CELL_SIZE = 2: int_
+--
+_+main(args: String[]): void_
++start(primaryStage: Stage): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>224</y>
+      <w>352</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>**edu.ou.cs2334.project4.handlers::OpenHandler**
+bg=white
+transparency=0
+--
+-opener: Openable
+--
++OpenHandler(window: Window, 
+             fileChooser: FileChooser, 
+             opener: Openable)
++handle(event: ActionEvent): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>520</x>
+      <y>328</y>
+      <w>352</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+**edu.ou.cs2334.project4.interfaces::Saveable**
+bg=white
+transparency=0
+--
+~save(filename: String): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>328</y>
+      <w>352</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+**edu.ou.cs2334.project4.interfaces::Openable**
+bg=white
+transparency=0
+--
+~open(file: File): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>416</x>
+      <y>336</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>**Application**
+bg=white
+transparency=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>448</x>
+      <y>472</y>
+      <w>24</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>bg=white
+transparency=0
+lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>208</x>
+      <y>608</y>
+      <w>56</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>656</x>
+      <y>608</y>
+      <w>56</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;120.0;50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>688</x>
+      <y>928</y>
+      <w>24</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>208</x>
+      <y>368</y>
+      <w>56</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>bg=white
+transparency=0
+lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0;50.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>656</x>
+      <y>368</y>
+      <w>56</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>bg=white
+transparency=0
+lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>50.0;10.0;50.0;220.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>208</x>
+      <y>296</y>
+      <w>24</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>688</x>
+      <y>296</y>
+      <w>24</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>448</x>
+      <y>352</y>
+      <w>24</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>bg=white
+transparency=0
+lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>448</x>
+      <y>672</y>
+      <w>24</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;400.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>248</x>
+      <y>40</y>
+      <w>416</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>**/edu.ou.cs2334.project4.handlers::AbstractBaseHandler/**
+bg=white
+transparency=0
+--
+#window: Window
+#fileChooser: FileChooser
+--
+#AbstractBaseHandler(window: Window, 
+                     fileChooser: fileChooser)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>208</x>
+      <y>104</y>
+      <w>176</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>bg=white
+transparency=0
+lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>536</x>
+      <y>104</y>
+      <w>176</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>bg=white
+transparency=0
+lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;200.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>376</x>
+      <y>136</y>
+      <w>192</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+bg=white
+transparency=0
+**EventHandler**
+template=T: Event
+--
++handle(event: T): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>384</x>
+      <y>184</y>
+      <w>48</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>bg=white
+transparency=0
+lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>40.0;10.0;40.0;100.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>488</x>
+      <y>184</y>
+      <w>48</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>bg=white
+transparency=0
+lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;40.0;100.0</additional_attributes>
+  </element>
+</diagram>
